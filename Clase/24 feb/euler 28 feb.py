@@ -22,16 +22,27 @@ def euler_method(n_max = 6 , x0 = 1.0):
         x[j + 1] = x[j] + h * f(x[j], t[j])
 
     return x
+
 fig_1 = plt.figure()
 t_ex = np.linspace(0, 3, 200)
-t_euler_1 = np.linspace(0 ,3 ,6)
+t_euler_1 = np.linspace(0 ,3, )
 x_euler_1 = euler_method()
 s_exact = sol_exacta(t_ex)
-
-plt.plot(t_euler_1 , x_euler_1, "*")
 plt.plot(t_ex, s_exact)
+plt.plot(t_euler_1, x_euler_1, "*")
+
+
+fig_2 = plt.figure()
+t_ex = np.linspace(0, 3, 200)
+t_euler_2 = np.linspace(0 ,3 ,6)
+x_euler_2 = euler_method()
+s_exact = sol_exacta(t_ex)
+plt.plot(t_ex, s_exact)
+plt.plot(t_euler_2, x_euler_2, "*")
+
+
 plt.show()
 
 
-numerical methods for ordinary differential equations
-    David griffiths
+#numerical methods for ordinary differential equations
+ #   David griffiths
