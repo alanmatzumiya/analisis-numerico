@@ -1,6 +1,6 @@
 # analisis-numerico
 python
 
-\[
-$$ \frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = $$
-\]
+$$
+\frac{n!}{k!(n-k)!} = {n \choose k}
+$$
