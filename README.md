@@ -1,4 +1,6 @@
 # analisis-numerico
 python
 
-### $$\frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = 0$$
+\[
+\frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = 
+\]
