@@ -1,0 +1,255 @@
+\newpage	
+	\begin{center}
+		\Large
+		\textbf{Estimación del número de reproducción básica de una epidemia de dengue para una sola cepa}.
+	\end{center}
+	\section{Descripcion del modelo.}
+	
+		Una medida simple pero eficaz de la transmisibilidad de una enfermedad infecciosa viene dada por el número de reproducción básica $R_0$, definido como el número total de infecciones secundarias producidas por la introducción de un único infeccioso en una población completamente susceptible [7]. \\
+		\\
+		Para las enfermedades transmitidas por vectores como la malaria y el dengue, $R_0$ es el número de casos secundarios producidos por un solo vector infeccioso introducido en una población huésped y vector completamente susceptible. \\
+		\\
+		En general, para los modelos epidémicos simples, si $R_0$ es mayor que la unidad se producirá una epidemia mientras que si $R_0$ es menor que la unidad es muy probable que no ocurra un brote. Por lo tanto, el valor de $R_0$ se puede utilizar para determinar la intensidad de las medidas de control que deben aplicarse para contener la epidemia.\\
+		
+		El siguiente sistema de ecuaciones diferenciales ordinarias es un modelo epidemiologico determinista del tipo vector-huesped, donde el vector es el mosquito y el huesped es el humano, que tiene como objetivo determinar el número de reproducción básica para una epidemia de dengue.\\
+		
+		Matematicamente, el modelo es el siguiente:
+	
+	\begin{align}
+		\frac{dS_H}{dt} &= \Pi_H + \lambda_H S_H - \mu S \\
+		\frac{dE_H}{dt} &= \lambda_H S_H - (\sigma_H + \mu)E_H \\
+		\frac{dI_H}{dt} &= \sigma_H E_H - (\tau_H + \mu + \delta_H)I_H \\
+		\frac{dR_H}{dt} &= \tau_H I_H - \mu R_H \\	
+		\frac{dS_V}{dt} &= \Pi_V + \lambda_V S_V - \mu_V S \\
+		\frac{dE_V}{dt} &= \lambda_V S_V - (\sigma_V + \mu_V)E_V \\
+		\frac{dI_V}{dt} &= \sigma_V E_V - (\tau_H + \mu_V + \delta_V)I_V 
+	\end{align}
+		Donde:
+	\begin{align}
+		\lambda_H = C_{HV}\frac{I_V}{N_H}
+	\end{align}
+	\begin{align}	
+		\lambda_V = C_{HV}\frac{I_H}{N_H}
+	\end{align}
+	\begin{align}
+		C_{HV} (t) = \left\lbrace
+		\begin{array}{ll}
+		\textup{si } t<t^* & C_{HV1} \\
+		\textup{si } t\geq t^* & C_{HV2} 
+		\end{array}
+		\right.
+	\end{align}
+	\bigskip
+	\section{Planteamientos e hipotesis del modelo.}
+		\begin{enumerate}
+			\item[-]
+			Este modelo asume que la poblacion de huespedes y vectores estan distribuidos homogeneamente.
+			\item[-]
+			La poblacion de humanos que se recuperan de la infecccion debido a un serotipo de dengue en particular se vuelven inmunes $[1]$.
+			\item[-]
+			Los vectores infectados por un serotipo en particular de dengue nunca se recuperan $[1]$.
+			\item[-]
+			También se modifico el modelo original de Garba et al. $[3]$ asumiendo que los seres humanos expuestos y los vectores expuestos no transmiten la enfermedad.
+			\item[-]
+			El modelo supone que la población humana susceptible $S_H$ tiene una tasa de reclutamiento constante $\Pi_H$ y una tasa de mortalidad natural $\mu$.
+			\item[-]
+			Los individuos susceptibles se infectan con el virus del dengue debido al contacto con los vectores infectados a una velocidad $\lambda_H$ y estos entran en la clase expuesta $E_H$.
+			\item[-]
+			La población expuesta $E_H$ decrece a una tasa de mortalidad natural $\mu$ y los individuos expuestos que desarrollan síntomas se mueven a la clase $I_H$ infectada a una tasa $\sigma_H$.
+			\item[-]
+			La población infectada $I_H$ decrece debido a la tasa de mortalidad natural $\mu$, la tasa de mortalidad inducida por la enfermedad $\delta_H$ y la tasa de recuperación de los individuos infectados $\tau_H$.
+			\item[-]
+			La población recuperada $R_H$ disminuye debido a la tasa de mortalidad natural $\mu$.
+			\item[-]
+			La población vector $S_V$ susceptible tiene una tasa de reclutamiento constante $\Pi_V$ y una tasa de mortalidad natural $\mu_V$.
+			\item[-]
+			Los vectores sensibles están infectados con el virus del Dengue (debido al contacto efectivo con seres humanos infectados) a una velocidad $\lambda_V$ y luego se mueven a la clase de vector expuesta $E_V$.
+			La clase expuesta del vector $E_V$ decrece a una tasa de mortalidad natural $\lambda_V$.
+			\item[-]
+			Los vectores expuestos desarrollan síntomas y se desplazan al vector infectado de clase $I_V$ a una velocidad $\sigma_V$.
+			Los vectores infectados, además de la tasa de mortalidad natural $\mu_V$, muere a una tasa de mortalidad inducida por la enfermedad $\delta_V$.
+		\end{enumerate}
+	
+	\section{Descripcion de las variables y parametros.}
+		\subsection{\textbf{Variables del sistema:}}
+			\begin{enumerate}
+				\item[-]
+				$N(t)$ :  Esta variable representa el total de la poblacion de humanos para un tiempo $t$ y se divide en cuatro clases: $S_H, E_H, I_H, R_H$.
+				\item[-]
+				$S_H(t)$ : Poblacion de humanos susceptibles a un tiempo $t$. 
+				\item[-]
+				$E_H(t)$ : Humanos expuestos a un tiempo $t$
+				\item[-]
+				$I_H(t)$ : Humanos infectados a un tiempo $t$
+				\item[-]
+				$R_H(t)$ : Humanos recuperados a un tiempo $t$
+				\item[-]
+				$N_V (t)$ : Esta variable representa la poblacion total de vectores para un tiempo $t$ y se divide en tres clases: $S_V, E_V, I_V$.	
+				\item[-]
+				$S_V (t)$ : Vectores susceptibles para un tiempo $t$
+				\item[-]
+				$E_V (t)$ : Vectores expuestos para un tiempo $t$
+				\item[-]
+				$I_V (t)$ : Vectores infectados para un tiempo $t$
+			\end{enumerate}
+		\subsection{\textbf{Parametros del sistema:}}
+			\begin{enumerate}
+				\item[-]
+				$\Pi_H$ :  Tasa de reclutamiento de la poblacion $S_H (t)$.
+				\item[-]
+				$\Pi_V$ :  Tasa de reclutamiento de la poblacion $S_V (t)$.
+				\item[-]
+				$\mu$ : Tasa de mortalidad natural de la poblacion $S_H (t)$.
+				\item[-]
+				$\delta_H$ : Tasa de mortalidad de la poblacion $I_H$ debido a la enfermedad.
+				\item[-]
+				$\mu_V$ : Tasa de mortalidad natural de la poblacion $S_V (t)$.
+				\item[-]
+				$\delta_V$ : Tasa de mortalidad de la poblacion $I_V$ debido a la enfermedad.
+				\item[-]
+				$\sigma_H$ : Velocidad con la cual los individuos de la clase expuesta pasa a ser parte de la clase infectada $I_H$ al desarrollar sintomas.
+				\item[-]
+				$\tau_H$ : Tasa de recuperacion de los individuos infectados $I_H$.
+				\item[-]
+				$\sigma_V$ : Velocidad con la cual los individuos de la clase expuesta $E_V$ pasa a ser parte de la clase infectada $I_V$ al desarrollar sintomas.
+				\item[-]
+				$\lambda_H$ : Velocidad con la cual la poblacion susceptible $S_H(t)$ es infectada del virus, asi dando entrada a nueva poblacion expuesta $E_H$.
+				\item[-]
+				$\lambda_V$ : Velocidad con la cual la poblacion susceptible $S_V(t)$ es infectada del virus, asi dando entrada a nueva poblacion expuesta $E_V$.
+				\item[-]
+				$C_{VH}$ : Tasa de contacto eficaz.
+			\end{enumerate}	
+			Los datos epidemiológicos utilizados en este estudio fueron recogidos por Punjab Disaster Management Authority de Punjab (PDMA) durante la epidemia de dengue de 2011 en Punjab, Pakistán.\\
+			\\
+			Para este modelo se ha utilizado ajuste por mínimos cuadrados ordinarios a los datos  para estimar los parámetros del modelo [5, 6, 8].\\
+			La mayoría de los estudios anteriores han utilizado valores asumidos para la tasa de contacto eficaz $C_{VH}$. [2 - 4]\\
+			\\
+			Además, para tener en cuenta el efecto de las medidas de control que se implementaron durante la epidemia real, se asumio que la tasa de transmisión eficaz $C_{HV}$ es una función del tiempo $t$, ademas de que se supuso que la velocidad de transmisión fue constante hasta el momento en que se implementaron las medidas de control, tras lo cual cambió a un valor constante diferente.\\
+			\\
+			Para la funcion de $C_{HV}$, donde $t^*$ es el momento en que se implementaron las medidas de control, para los fines de este estudio y en vista de que no hay información concreta disponible al respecto, se ha supuesto que $t^* = 8$ semanas.\\
+			\\
+			La aplicación del algoritmo por mínimos cuadrados ordinarios al modelo vector-host da como resultado un valor de $C_{HV1} = 8.1897$ semanas$^{-1}$ antes de la implementación de las medidas de control y un valor de $C_{HV2} = 0.9523$ semanas$^{-1}$ después de la aplicación de medidas de control.\\
+			\\
+			Así, se obtuvo una estimación de $R_0 = 2.9871$ antes de la implementación de las medidas de control y $R_0 = 0.3473$ después de la implementación de las medidas de control.\\	
+	
+	\begin{table}
+		\subsection{Valores de las condiciones iniciales y los parametros.}	
+			\bigskip
+			\bigskip	
+			\centering
+			\begin{tabular}{|c|c|}
+				\hline
+				\textbf{Condicion inicial} & \textbf{Valor} \\
+				\hline 
+				\ $S_H(t)$& $1$ millon \\ \hline
+				\ $E_H(t)$ & $15$ \\ \hline
+				\ $I_H(t)$ & $3$ \\ \hline
+				\ $R_H(t)$ & $0$ \\ \hline
+				\ $S_V(t)$ & $0.1$ millon \\ \hline
+				\ $E_V(t)$ & $60$ \\ \hline
+				\ $I_V(t)$ & $20$ \\ \hline
+			\end{tabular}
+			\textbf{\caption{Valores numericos de las condiciones iniciales utilizados en la simulacion.}}
+			\bigskip
+			\bigskip
+			\centering	
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\textbf{Condicion inicial} & \textbf{Valor}& \textbf{Unidades} \\
+				\hline 
+				\ $\pi_H$  & $140$ & semanas$^{-1}$ \\ \hline
+				\ $\pi_V$ & $28000$ & semanas$^{-1}$ \\ \hline
+				\ $\frac{1}{\mu}$ & $3494$ & semanas \\ \hline
+				\ $\delta_H$ & $0.0035$ & semanas$^{-1}$ \\ \hline
+				\ $\frac{1}{\mu_V}$ & $2$ & semanas \\ \hline
+				\ $\delta_V$ & $0.01$ & semanas \\ \hline
+				\ $\frac{1}{\sigma_H}$ & $1$ & semanas \\ \hline
+				\ $\frac{1}{\tau_H}$ & $1$ & semanas \\ \hline
+				\ $\frac{1}{\sigma_V}$ & $\frac{7}{10}$ & semanas \\ \hline
+			\end{tabular}
+			\textbf{\caption{Valores numericos de los parametros utilizados en la simulacion.}}
+		\end{table}
+	\newpage
+	\section{\textbf{Simulacion del sistema.}}
+		Para simular la solucion del sistema mostrado anteriormente se utilizo la herramienta de odeint en python y ademas se implementaron los metodos de Euler y Runge-Kutta de orden $4$ para comparar los resultados.\\
+		\\
+		Para la implementacion de los metodos se utilizaron las siguientes ecuaciones.\\
+	\subsection{\textbf{Metodo de Euler.}}
+		El sistema mencionado anteriormente se puede representar de la siguiente manera:\\
+		\begin{align*}
+		f_1 &= \Pi_H + \lambda_H S_H - \mu S \\
+		f_2 &= \lambda_H S_H - (\sigma_H + \mu)E_H \\
+		f_3 &= \sigma_H E_H - (\tau_H + \mu + \delta_H)I_H \\
+		f_4 &= \tau_H I_H - \mu R_H \\	
+		f_5 &= \Pi_V + \lambda_V S_V - \mu_V S \\
+		f_6 &= \lambda_V S_V - (\sigma_V + \mu_V)E_V \\
+		f_7 &= \sigma_V E_V - (\tau_H + \mu_V + \delta_V)I_V \\
+		\end{align*}
+		Si denotamos a $X$ como el siguiente vector de funciones:\\
+		\begin{align}
+		X = (f_1, f_2, f_3, f_4, f_5, f_6, f_7)
+		\end{align}
+		Podriamos definir al sistema de ecuaciones diferenciales por la siguiente funcion $f'$ con su respectiva condicion inicial $X_0$:
+		\begin{align}
+		f' (t, X); X_0 = (S_{H0}, E_{H0}, I_{H0}, R_{H0}, S_{V0}, E_{V0}, I_{V0})
+		\end{align}
+		Implementando el metodo de euler a este sistema quedaria como sigue:
+		\begin{align}
+		X_{n+1} = X_n + hf'(t_n , X_n)
+		\end{align}		
+		Donde $X_{n+1}$ es la solucion del sistema al tiempo $t_{n+1}$ y $h$ es la particion de los subintervalos.
+	\newpage
+	\subsection{\textbf{Metodo de Runge-Kutta de orden 4.}}	
+		Para este metodo se utilizaron las siguientes ecuaciones:
+		\begin{align}
+		X_{n+1} = X_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+		\end{align}
+		Donde:
+		\begin{align*}
+		k_1 &= f'(t_n , X_n)\\
+		k_2 &= f'(t_n + \frac{1}{2}h , X_n + \frac{1}{2}k_1h)\\
+		k_3 &= f'(t_n + \frac{1}{2}h , X_n + \frac{1}{2}k_2h)\\
+		k_4 &= f'(t_n + h , X_n + k_3h)\\
+		\end{align*}
+	Para comparar resultados entre los metodos implementados se utilizo la misma particion $h$ en los tres casos, tomando un valor de $h = 0.035$ sobre un intervalo desde $t=0$ y $t=35$ semanas.
+		
+	\newpage
+	\section{\textbf{Bibliografia.}}
+	\bigskip
+		\begin{enumerate}
+			\item 
+			World Health Organization: dengue and severe dengue fact sheet.
+			2012. [http://www.who.int/mediacentre/factsheets/fs117/en/]
+			\item
+			Garba SM, Gumel AB: Abu Bakar MR: Backward bifurcations in
+			dengue transmission dynamics. Math Biosci 2008, 215:11–25.
+			\item
+			Garba S, Gumel A: Effect of cross-immunity on the transmission
+			dynamics of two strains of dengue. Int J Comput Math 2010,
+			87(10):2361–2384.
+			\item
+			Wearing HJ, Rohani P: Ecological and immunological determinants of
+			dengue epidemics. Proc Natl Acad Sci 2006, 103(31):11802–11807.
+			\item
+			Chowell G, Diaz-Dueñas P, Miller J, Alcazar-Velazco A, Hyman J,
+			Fenimore P, Castillo-Chavez C: Estimation of the reproduction number
+			of dengue fever from spatial epidemic data. Math Biosci 2007,
+			208(2):571–589.
+			\item
+			Cintrón-Arias A, Castillo-Chávez C, Bettencourt LM, Lloyd AL, Banks H:
+			The estimation of the effective reproductive number from disease
+			outbreak data. Math Biosci Eng 2009, 6(2):261–282.
+			\item
+			Van den Driessche P, Watmough J: Reproduction numbers and
+			sub-threshold endemic equilibria for compartmental models of
+			disease transmission. Math Biosci 2002, 180:29–48.
+			\item
+			Chowell G, Hengartner N, Castillo-Chavez C, Fenimore F, Hyman J:
+			The basic reproductive number of Ebola and effects of public health
+			measures: the cases of Congo and Uganda. J Theor Biol 2004,
+			229:119–126.
+		\end{enumerate}
+\end{document}|	
+	
+	
+		

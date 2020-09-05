@@ -1,3 +1,0 @@
-# analisis-numerico
-python
-hola
